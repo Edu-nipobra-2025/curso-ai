@@ -1,6 +1,6 @@
 print ("Me Ofereça dois números para que eu realize uma soma!")
-num1 = input()
-num2 = input()
-val1 = int(num1)
-val2 = int(num2)
-print (val1 + val2)
+num1 = int(input())
+num2 = int(input())
+
+resultado = num1+num2
+print (resultado)
