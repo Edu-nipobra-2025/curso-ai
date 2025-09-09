@@ -16,7 +16,9 @@ def multi (a: float, b: float) -> float:
            return a*b
 def div (a: float, b: float) -> float:
            return a/b
-     
+if b ==0:
+    raise ZeroDivisionError("Erro, divisão por zero")
+    return a/b
 def main():
  while True:
   print("\n ----Menu----")
@@ -30,24 +32,30 @@ def main():
   except ValueError:
     continue 
 
- if opcao == 0:
+if opcao == 0:
      print ("Até Mais!")
-break
+     break 
 
- if opcao == 1:
-    a = int(input("Dê primeiro Valor\n"))
-    b = int(input("Dê segundo Valor\n"))
-    print(soma(a,b))
- elif opcao == 2:
-    a = int(input("Dê primeiro Valor\n"))
-    b = int(input("Dê segundo Valor\n"))
-    print(subtra(a,b))
- elif opcao == 3:
-    a = int(input("Dê primeiro Valor\n"))
-    b = int(input("Dê segundo Valor\n"))
-    print(multi(a,b))
- elif opcao == 4:
-  if b == 0:
-   print("Valor inválido!")
-  else:
-      print(div(a,b))     
+if 1 <= opcao <= 4:
+   a = ler_real("Primeiro número: ")
+   b = ler_real("Segundo número: ")
+
+if opcao == 1:
+        r = soma (a,b)
+        print("Resultado:", r)
+elif opcao == 2:
+        r = subtra (a,b)
+        print("Resultado:", r)
+elif opcao == 3:
+        r = multi (a,b)
+        print("Resultado:", r)
+else:
+     try:
+          r = div(a,b)
+          print("Resultado:", r)
+     except ZeroDivisionError:
+          print("Erro, Divisão por zero.")
+     else:
+      print("Operação inválida.")    
+if__name__ == "__main__":
+main()
