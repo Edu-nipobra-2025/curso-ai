@@ -1,0 +1,13 @@
+def maiorNumero(numero1, numero2):
+    numero1
+    numero2
+    maiorDosNum = 0
+    if numero1 > numero2:
+        maiorDosNum = numero1
+    else: 
+        maiorDosNum = numero2
+    print(maiorDosNum)
+    return maiorDosNum
+numero1 = int(input("Digite o primeiro número: "))
+numero2 = int(input("Digite o segundo número: "))
+maiorNumero(numero1,numero2)

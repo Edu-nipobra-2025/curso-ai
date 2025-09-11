@@ -1,0 +1,9 @@
+#anotações aula 6
+
+Len() length
+min () menor tamanho da lista 
+max() maior tamanho da lista
+sum () soma
+
+minha_lista[1] = "uva" I altera elementos dentro da lista
+xxx.split(",") | o que estiver dentro ira dividir a lista

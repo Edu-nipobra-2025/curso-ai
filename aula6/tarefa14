@@ -1,0 +1,8 @@
+def dobro(numero):
+    numero 
+    dobroConta = numero*2
+    print(dobroConta)
+    return dobroConta
+
+numero = int(input("Dê o seu valor para ser dobrado: "))
+dobro(numero)

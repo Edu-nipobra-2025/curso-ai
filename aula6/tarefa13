@@ -1,0 +1,16 @@
+def saudacao_personalizada(nome,horarioManual):
+  nome
+  horario
+  horarioManual
+  if horario <12:
+    horarioManual = "Dia"
+  elif horario >12 and horario < 18:
+    horarioManual = "Tarde"
+  else:
+    horarioManual = "Noite"
+  print("Olá", nome, "Bom(a)",horarioManual)
+  return 
+nome = input("Digite seu nome ")
+horario = int(input("Digite que horas são "))
+horarioManual = "x"
+saudacao_personalizada(nome,horarioManual)

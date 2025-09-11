@@ -14,7 +14,6 @@ maquina2 = ler_entrada("Maquina 1")
 maquina3 =ler_entrada("Maquina 1")
 
 
-requerimentos = False
 maquinas = [maquina1,maquina2,maquina3]
 
 
