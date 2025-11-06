@@ -1,0 +1,84 @@
+
+def preencherCronograma (disponibilidade):
+  vetor = []
+  for i in range (disponibilidade[0]):
+    if horasPorArea[0] > 0:
+       horasDomingo.append("exatas")
+       horasPorArea[0] = horasPorArea[0] -1
+
+    elif horasPorArea[1] > 0:
+       horasDomingo.append("Linguagem")
+       horasPorArea[1] = horasPorArea[1] -1
+
+    elif horasPorArea[2] > 0:
+       horasDomingo.append("Natureza")
+       horasPorArea[2] = horasPorArea[2] -1
+
+    elif horasPorArea[3] > 0:
+       horasDomingo.append("humanas")
+       horasPorArea[3] = horasPorArea[3] -1
+
+    elif horasPorArea[4] > 0:
+       horasDomingo.append("redação")
+       horasPorArea[4] = horasPorArea[4] -1 
+    return disponibilidade
+
+
+cursos = [["IA","10","6","5","4","6"],
+          ["Engenharia de Pesca", "10", "3", "9","4","5"],
+          ["Medicina", "6", "7", "10","5","8"],
+          ["Letras PORTUGUES", "5", "10", "5","7","10"],
+          ["Direito", "4", "8", "5","10","10"],
+          ["Arquitetura", "7", "6", "4","9","8"]]
+
+disponibilidade = []
+diasDaSemana = ["Domingo","Segunda-Feira","Terca-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sabado"]
+for i in range(7):
+    print(f"Digite a quantidade de horas nos dias de {diasDaSemana[i]}: ")
+    valor = int(input())
+    disponibilidade.append(valor) 
+
+areasDeEstudo = ["exatas", "linguagens", "natureza", "humanas", "redacao"]
+dificuldades = []
+
+for i in range(5):
+    print("Selecione uma dificuldade de 0 a 10 na prova de", areasDeEstudo[i])
+    valor = int(input())
+    dificuldades.append(valor)
+
+escolhaDoCurso = input("Digite o nome do curso: ")
+posicao = -1
+for i in range (6):
+    if escolhaDoCurso.casefold() == cursos[i][0].casefold():
+        posicao = i
+        
+prioridade = []
+for i in range (5): 
+    print("Cronograma: ", cronoEstudo)
+
+horasPorArea = []
+for i in range(5):
+   valor = (hrsTotal/prioridadeTotal) 
+   horasPorArea.append(round(valor))
+   horasDomingo = []
+   horasSegunda = []
+   horasTerca = []
+   horasQuarta = []
+   horasQuinta = []
+   horasSexta = []
+   horasSabado = []
+   horasDomingo = preencherCronograma(disponibilidade)
+   horasSegunda = preencherCronograma(disponibilidade)
+   horasTerca = preencherCronograma(disponibilidade)
+   horasQuarta = preencherCronograma(disponibilidade)
+   horasQuinta = preencherCronograma(disponibilidade)
+   horasSexta = preencherCronograma(disponibilidade)
+   horasSabado = preencherCronograma(disponibilidade)
+
+print(horasDomingo)
+print(horasSegunda)
+print(horasTerca)
+print(horasQuarta)
+print(horasQuinta)
+print(horasSexta)
+print(horasSabado)

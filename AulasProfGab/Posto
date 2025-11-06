@@ -1,0 +1,56 @@
+import numpy as np
+
+# Dados de entrada: litros no tanque
+X = np.array([
+    [10000],
+    [1000],
+    [2000],
+    [6000],
+    [4500]
+], dtype=float)
+
+Y = np.array([[1],[0],[0],[1]], dtype=float)
+
+
+X = X / np.max(X)
+
+np.random.seed(42)
+pesos_camada_oculta = np.random.uniform(-1, 1, (1, 3))  
+pesos_saida = np.random.uniform(-1, 1, (3, 1))  
+
+taxa_aprendizado = 0.1
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def sigmoid_derivada(x):
+    return x * (1 - x)
+
+# Treinamento
+for epoca in range(100):
+    camada_oculta = sigmoid(np.dot(X, pesos_camada_oculta))
+    saida = sigmoid(np.dot(camada_oculta, pesos_saida))
+    
+    erro = Y - saida
+    
+    ajuste_saida = erro * sigmoid_derivada(saida)
+    ajuste_oculta = ajuste_saida.dot(pesos_saida.T) * sigmoid_derivada(camada_oculta)
+    
+    pesos_saida += camada_oculta.T.dot(ajuste_saida) * taxa_aprendizado
+    pesos_camada_oculta += X.T.dot(ajuste_oculta) * taxa_aprendizado
+
+novo_valor = np.array([[2300]], dtype=float)
+novo_valor = novo_valor / np.max(X) 
+camada_oculta = sigmoid(np.dot(novo_valor, pesos_camada_oculta))
+resultado = sigmoid(np.dot(camada_oculta, pesos_saida))
+
+print(f"Saída da rede: {resultado[0][0]:.4f}")
+
+print("\nResultados por bomba:")
+for i in range(len(X)):
+    entrada = X[i].reshape(1, -1)
+    camada_oculta = sigmoid(np.dot(entrada, pesos_camada_oculta))
+    resultado = sigmoid(np.dot(camada_oculta, pesos_saida))
+    
+    estado = "Bomba ligada." if resultado[0][0] >= 0.5 else "Bomba desligada."
+    print(f"Bomba {i+1} ({entrada[0][0] * np.max(X) * 10000:.0f} litros): {resultado[0][0]:.4f} → {estado}")

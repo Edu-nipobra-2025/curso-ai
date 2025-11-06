@@ -1,0 +1,29 @@
+
+n = int(input("Quantos elementos o vetor deve ter? "))
+vetor = []
+
+for i in range(n):
+    valor = float(input("Digite o próximo valor: "))
+    vetor.append(valor)
+
+positivos = []
+negativos = []
+
+for i in range(n):
+    if vetor[i] < 0:
+        negativos.append(vetor[i])
+    else:
+        positivos.append(vetor[i])
+
+print("--- Resultados ---")
+print("Vetor digitado:", vetor)
+
+if positivos:
+    print("Maior número positivo:", max(positivos))
+else:
+    print("Não há números positivos.")
+
+if negativos:
+    print("Maior (menos negativo) número negativo:", max(negativos))
+else:
+    print("Não há números negativos.")

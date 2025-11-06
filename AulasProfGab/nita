@@ -1,0 +1,92 @@
+import math
+import random
+
+tabuleiro = [
+    ['S', '.', '.', '*', '.', '@', '.', '.', '*'],
+    ['.', '#', '.', '*', '@', '.', '*', '.', '.'],
+    ['.', '.', '.', '.', '#', '.', '@', '*', '.'],
+    ['.', '@', '#', '.', '.', '*', '.', '.', '.'],
+    ['*', '.', '.', '@', '.', '#', '.', '*', '.'],
+    ['.', '*', '.', '.', '*', '.', '.', '@', '.'],
+    ['.', '.', '*', '.', '.', '.', '*', '.', '.'],
+    ['.', '.', '@', '.', '*', '.', '.', '.', 'G']
+]
+
+pesoGelo = 1.1
+pesoEspinho = 1.4
+
+inicio = (0, 0)
+objetivo = (7, 7)
+
+movimentos = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+
+
+def calcularDistancia(posicao, objetivo):
+    x1, y1 = posicao
+    x2, y2 = objetivo
+    d = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+    return d
+
+def definirMenorRisco(posicao):
+    x, y = posicao
+    menorRisco = 0
+    i = 0
+    melhorPosicao = (-1, -1)
+
+    for dx, dy in movimentos:
+        xn = x + dx
+        yn = y + dy
+        posicao = (xn, yn)
+
+        if 0 <= xn <= 7 and 0 <= yn <= 7 and tabuleiro[xn][yn] != '#':
+            d = calcularDistancia(posicao, objetivo)
+            if tabuleiro[xn][yn] == '@':
+                d *= pesoEspinho
+            if tabuleiro[xn][yn] == '*':
+                d *= pesoGelo
+
+            if i == 0 or d < menorRisco:
+                menorRisco = d
+                melhorPosicao = posicao
+            i = i + 1
+
+    return menorRisco, melhorPosicao
+
+
+def movimentacaoDoGelo(posicao):
+    x, y = posicao
+    if random.random() <= 0.5:  # retorna um valor entre 0 e 1
+        movimentoPossivel = False
+        while not movimentoPossivel:
+            i = random.randint(0, 3)
+            dx, dy = movimentos[i]
+            xn = x + dx
+            yn = y + dy
+            if 0 <= xn <= 7 and 0 <= yn <= 7 and tabuleiro[xn][yn] != '#':
+                movimentoPossivel = True
+                posicao = (xn, yn)
+
+    return posicao
+
+def movimentacaoEspinho (posicao):
+    if random.random() <= 0.3:
+        posicao = inicio
+    return posicao
+
+def encontrarObjetivo():
+    xi, yi = inicio
+    xo, yo = objetivo
+    posicao = inicio
+    passos = 0
+    while xi != xo or yi != yo:
+        risco, posicao = definirMenorRisco(posicao)
+        xi, yi = posicao
+        if tabuleiro[xi][yi] == '@':
+            posicao = movimentacaoDoGelo(posicao)
+        elif tabuleiro[xi][yi] == '*':
+            posicao = movimentacaoEspinho(posicao)
+        passos += 1
+        xi, yi = posicao
+        print(posicao)
+        print(passos)
+encontrarObjetivo()
